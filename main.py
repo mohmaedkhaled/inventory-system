@@ -1,16 +1,16 @@
 __author__ = "macaw"
 import os
+import subprocess
 from tkinter import *
 from tkinter import messagebox
-import subprocess
 
 main = Tk()
-main.geometry("{0}x{1}+0+0".format(main.winfo_screenwidth(), main.winfo_screenheight()))  # Full screen
-main.title("ادارة المخزن")
+main.geometry("1366x768")
+main.title("المخزن")
 main.resizable(0, 0)
 
 def Exit():
-    sure = messagebox.askyesno("خروج", "هل انت متاكد من الخروج", parent=main)
+    sure = messagebox.askyesno("الخروج", "هل أنت متأكد أنك تريد الخروج؟", parent=main)
     if sure:
         main.destroy()
 
@@ -18,18 +18,16 @@ main.protocol("WM_DELETE_WINDOW", Exit)
 
 def emp():
     main.withdraw()
-    os.system("python employee.py")
-    subprocess.run([".\scripts\employee.exe"], creationflags=subprocess.CREATE_NO_WINDOW, shell=True)
+    subprocess.call(["pythonw", "scripts/employee.py"], creationflags=subprocess.CREATE_NO_WINDOW)
     main.deiconify()
 
 def adm():
     main.withdraw()
-    os.system("python admin.py")
-    subprocess.run([".\scripts\admin.exe"], creationflags=subprocess.CREATE_NO_WINDOW, shell=True)
+    subprocess.call(["pythonw", "scripts/admin.py"], creationflags=subprocess.CREATE_NO_WINDOW)
     main.deiconify()
 
 label1 = Label(main)
-label1.place(relx=0, rely=0, width=main.winfo_screenwidth(), height=main.winfo_screenheight())
+label1.place(relx=0, rely=0, width=1366, height=768)
 img = PhotoImage(file="./images/main.png")
 label1.configure(image=img)
 
